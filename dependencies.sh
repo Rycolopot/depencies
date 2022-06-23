@@ -130,3 +130,8 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl enable seid
 sudo systemctl restart seid
+
+
+echo '=============== SETUP FINISHED ==================='
+echo -e 'To check logs: \e[1m\e[32mjournalctl -u seid -f -o cat\e[0m'
+echo -e "To check sync status: \e[1m\e[32mseid status 2>&1 | jq .SyncInfo\e[0m"
