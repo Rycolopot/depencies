@@ -6,12 +6,12 @@
 #
 
 
-echo " 📌 --Jangan Lupa di follow biar semangat bantu kalian 😅"
-echo " 📌 --Twitter  : @rehan_ssf"
-echo " 📌 --Telegram : @paperhang"
+echo " 📌 Jangan Lupa di follow biar semangat bantu kalian 😅"
+echo " 📌 Twitter  : @rehan_ssf"
+echo " 📌 Telegram : @paperhang"
 echo
 echo " seperti biasa di update dulu ya bang biar gak eror nanti "
-echo -n " klik enter aja bang 😂 : "
+echo -n " klik enter aja bang 😂  "
 read user
 echo
 sudo apt update && sudo apt upgrade -y
