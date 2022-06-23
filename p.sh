@@ -5,14 +5,31 @@
 # Distributed under terms of the MIT license.
 #
 
-sudo apt update && sudo apt upgrade -y
-sudo apt install curl build-essential git wget jq make gcc tmux -y
-ver="1.18.2"
-cd $HOME
-wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
-rm "go$ver.linux-amd64.tar.gz"
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
-source ~/.bash_profile
-go version
+echo -n "masukkan user linux anda : "
+read user
+
+echo "install maven"
+mkdir -p /home/$user/programming/build-tool/apache-maven
+wget http://mirror.wanxp.id/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+tar -xvzf apache-maven-3.3.9-bin.tar.gz
+rm apache-maven-3.3.9-bin.tar.gz
+mv apache-maven-3.3.9/* /home/$user/programming/build-tool/apache-maven/
+rmdir apache-maven-3.3.9/
+
+echo "membuat file environment"
+touch environment
+
+echo "membuat path maven"
+echo "M2_HOME=/home/$user/programming/build-tool/apache-maven" | tee -a /home/$user/environment
+
+echo "copy file environment"
+sudo cp environment /etc/environment
+
+echo "update aplikasi"
+sudo apt-get update
+
+echo "upgrade aplikasi"
+sudo apt-get upgrade -y
+
+echo "dist upgrade aplikasi"
+sudo apt-get dist-upgrade -y
