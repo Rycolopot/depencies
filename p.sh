@@ -6,14 +6,13 @@
 #
 
 
-echo "Jangan Lupa di bantu klik subscribe 😅"
-echo "Twitter  : @rehan_ssf"
-echo "Telegram : @paperhang"
-
-echo -n "seperti biasa ketik yes untuk update/upgrade : "
+echo "📌Jangan Lupa di follow biar semangat bantu kalian 😅"
+echo "📌Twitter  : @rehan_ssf"
+echo "📌Telegram : @paperhang"
+echo
+echo "seperti biasa di update dlu ya bang biar gak eror nanti : "
+echo -n "ketik aja bebas bang 😂 : "
 read user
-
-
-
+echo
 sudo apt update && sudo apt upgrade -y
 sudo apt install curl build-essential git wget jq make gcc tmux -y
