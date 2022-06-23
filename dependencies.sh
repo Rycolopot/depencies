@@ -17,4 +17,10 @@ read user
 echo
 sudo apt update && sudo apt upgrade -y
 sudo apt install curl build-essential git wget jq make gcc tmux -y
-
+echo
+cd $HOME && rm $HOME/sei-chain -rf
+git clone https://github.com/sei-protocol/sei-chain.git && cd $HOME/sei-chain
+git checkout 1.0.4beta
+make install
+mv ~/go/bin/seid /usr/local/bin/seid
+systemctl restart seid && journalctl -fu seid -o cat
