@@ -6,11 +6,11 @@
 # Distributed under terms of the MIT license.
 #
 
-
+echo -e "\033[0;35m"
 echo " 📌 Jangan Lupa di follow biar semangat bantu kalian 😅"
 echo " 📌 Twitter  : @rehan_ssf"
 echo " 📌 Telegram : @paperhang"
-echo
+echo -e "\e[0m"
 echo " seperti biasa di update dulu ya bang biar gak eror nanti "
 echo -n " klik enter aja bang 😂 !"
 read user
@@ -88,3 +88,45 @@ sed -i.bak -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${S
 # disable indexing
 indexer="null"
 sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.sei/config/config.toml
+
+# config pruning
+pruning="custom"
+pruning_keep_recent="100"
+pruning_keep_every="0"
+pruning_interval="50"
+sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.sei/config/app.toml
+sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.sei/config/app.toml
+sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.sei/config/app.toml
+sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.sei/config/app.toml
+
+# set minimum gas price
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0usei\"/" $HOME/.sei/config/app.toml
+
+# enable prometheus
+sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.sei/config/config.toml
+
+# reset
+seid tendermint unsafe-reset-all
+
+echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
+# create service
+sudo tee /etc/systemd/system/seid.service > /dev/null <<EOF
+[Unit]
+Description=sei
+After=network-online.target
+
+[Service]
+User=$USER
+ExecStart=$(which seid) start
+Restart=on-failure
+RestartSec=3
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# start service
+sudo systemctl daemon-reload
+sudo systemctl enable seid
+sudo systemctl restart seid
