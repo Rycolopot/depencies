@@ -1,11 +1,4 @@
-#!/bin/sh
-#
-# Copyright (C) 2022 Rycolopot <rycolopot@gmail.com>
-#
-# Distributed under terms of the MIT license.
-#
-
-
+#!/bin/bash
 echo " 📌 --Jangan Lupa di follow biar semangat bantu kalian 😅"
 echo " 📌 --Twitter  : @rehan_ssf"
 echo " 📌 --Telegram : @paperhang"
