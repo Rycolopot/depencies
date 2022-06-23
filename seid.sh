@@ -17,9 +17,6 @@ echo
 sudo apt update && sudo apt upgrade -y
 sudo apt install curl build-essential git wget jq make gcc tmux -y
 
-
-sleep 2
-
 # set vars
 if [ ! $NODENAME ]; then
 	read -p "Enter node name: " NODENAME
