@@ -4,7 +4,7 @@
 #
 # Distributed under terms of the MIT license.
 #
-
+echo "hello $nama"
 echo -n "masukkan user linux anda : "
 read user
 
